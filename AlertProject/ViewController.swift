@@ -22,10 +22,9 @@ class ViewController: UIViewController {
         
     }
 
-    @IBAction func signupButtonClicked(_ sender: UIButton) {
-        
+    func alertMessage(title: String, message: String) {
         // can make a function for alert and use it repeatedly in many other places in the app.
-        let alert = UIAlertController(title: "Error!", message: "Username not found!", preferredStyle: .alert)
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okButton = UIAlertAction(title: "OK", style: UIAlertAction.Style.default) { UIAlertAction in
             //button clicked
             print("Alert OK button clicked.")
@@ -33,9 +32,22 @@ class ViewController: UIViewController {
         alert.addAction(okButton)
         self.present(alert, animated: true, completion: nil)
         
-        //if usernameTextField.text = "" {
-            
-        //}
+    }
+    
+    @IBAction func signupButtonClicked(_ sender: UIButton) {
+        
+        if usernameTextField.text == "" {
+            alertMessage(title: "Error!", message: "username not found")
+        }
+        else if passwordTextField.text == "" {
+            alertMessage(title: "Error!", message: "password not found")
+        }
+        else if passwordRepeatTextField.text == ""{
+            alertMessage(title: "Error!", message: "passwords do not match")
+        }
+        else {
+            alertMessage(title: "Success!", message: "User Registration Successful.")
+        }
     }
     
 }
